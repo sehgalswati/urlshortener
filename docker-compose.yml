@@ -1,0 +1,17 @@
+version: '3'
+services:
+  urlshortener:
+    restart: always
+    image: urlshortener
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres_application
+  postgres_application:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: 'postgrespassword'
+      POSTGRES_USER: 'urlshortener_db'
+      POSTGRES_DB: 'urlshortener_db'
+    ports:
+      - 5432:5432
